@@ -58,40 +58,7 @@ public class Robot extends SampleRobot {
   }
 
   /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString line to get the auto name from the text box below the Gyro
-   *
-   * <p>You can add additional auto modes by adding additional comparisons to
-   * the if-else structure below with additional strings. If using the
-   * SendableChooser make sure to add them to the chooser code above as well.
-   *
-   * <p>If you wanted to run a similar autonomous mode with an TimedRobot
-   * you would write:
-   *
-   * <blockquote><pre>{@code
-   * Timer timer = new Timer();
-   *
-   * // This function is run once each time the robot enters autonomous mode
-   * public void autonomousInit() {
-   *     timer.reset();
-   *     timer.start();
-   * }
-   *
-   * // This function is called periodically during autonomous
-   * public void autonomousPeriodic() {
-   * // Drive for 2 seconds
-   *     if (timer.get() < 2.0) {
-   *         myRobot.drive(-0.5, 0.0); // drive forwards half speed
-   *     } else if (timer.get() < 5.0) {
-   *         myRobot.drive(-1.0, 0.0); // drive forwards full speed
-   *     } else {
-   *         myRobot.drive(0.0, 0.0); // stop robot
-   *     }
-   * }
-   * }</pre></blockquote>
+   * Select auton mode to trigger a climb
    */
   @Override
   public void autonomous() {
@@ -133,7 +100,7 @@ public class Robot extends SampleRobot {
   }
 
   /**
-   * Runs during test mode.
+   * Runs during test mode.  Used to find max sensor velocity on 1 Talon.
    */
   @Override
   public void test() {
@@ -150,6 +117,9 @@ public class Robot extends SampleRobot {
     upDownRear.set(ControlMode.PercentOutput, 0);
   }
 
+  /**
+   * Initial effort at PID tuning for Motion Magic on climber.
+   */
   public void motionmagicclimber(){
     TalonSRX upDownRear = new TalonSRX(31);
     upDownRear.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
