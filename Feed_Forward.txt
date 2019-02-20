@@ -1,0 +1,21 @@
+Encoder ticks	0				
+Encoder ticks	1707	1707			
+Encoder ticks	4058	2351			
+Encoder ticks	6451	2393			
+Encoder ticks	8835	2384			
+					
+Encoder ticks	0				
+Encoder ticks	4055	4055			
+Encoder ticks	6457	2402			
+Encoder ticks	8841	2384			
+					
+Encoder ticks	0				
+Encoder ticks	1458	1458		2391.416667	0.4277799073 <-- Feed forward max sensor velocity, f-gain = 0.42....
+Encoder ticks	3823	2365		1195.708333	<-- one-half of max sensor velocity, recommended starting cruise velocity
+Encoder ticks	6220	2397			
+Encoder ticks	8611	2391			
+Encoder ticks	11021	2410			
+
+
+
+See https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html for more info.

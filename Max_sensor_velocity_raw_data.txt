@@ -1,0 +1,22 @@
+ Encoder ticks	0 
+ Encoder ticks	1707 
+ Encoder ticks	4058 
+ Encoder ticks	4058 
+ Encoder ticks	6451 
+ Encoder ticks	8835 
+
+ Encoder ticks	0 
+ Encoder ticks	4055 
+ Encoder ticks	4055 
+ Encoder ticks	6457 
+ Encoder ticks	8841 
+
+Encoder ticks	0 
+ Encoder ticks	1458 
+ Encoder ticks	3823 
+ Encoder ticks	3823 
+ Encoder ticks	6220 
+ Encoder ticks	8611 
+ Encoder ticks	8611 
+ Encoder ticks	11021 
+ Encoder ticks	11021 
