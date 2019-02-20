@@ -19,3 +19,17 @@ Encoder ticks	11021	2410
 
 
 See https://phoenix-documentation.readthedocs.io/en/latest/ch16_ClosedLoop.html for more info.
+
+Good consistency with fgain from above:
+Encoder Position at 2 seconds	15701 
+Warning  0  [phoenix] Initialization is complete.   
+ Encoder Position at 4 seconds	15884 
+ Default disabled() method running, consider providing your own 
+ Auto selected: Default 
+ Encoder Position at 2 seconds	15754 
+ Encoder Position at 4 seconds	15755 
+
+ So, target was 8000, we ended about double that.  Next is to tune kP, and probably want to do this front and back under load.
+
+ Note that the 15000 values above were still within the tracks (we didn't throw a leg).  Recommend keeping target ~8000 until 
+ properly tuned.
