@@ -33,3 +33,23 @@ Warning  0  [phoenix] Initialization is complete.
 
  Note that the 15000 values above were still within the tracks (we didn't throw a leg).  Recommend keeping target ~8000 until 
  properly tuned.
+
+under load: 8600 for Position 8000, get about 600
+if 10% throttle (.1 x 1023)/ 600 = 0.1705
+kp = .1705
+
+upDownRear values:
+ climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    climber.getSensorCollection().setQuadraturePosition(0, 10);
+    climber.configMotionAcceleration(4784);
+    climber.configMotionCruiseVelocity(1196);
+    climber.configPeakOutputForward(1.0);
+    climber.configPeakOutputReverse(-1.0);
+    climber.config_kP(0, 0.1705);
+    climber.config_kI(0, 0);
+    climber.config_kD(0, 1.75);
+    climber.config_kF(0, 0.427799073);
+    climber.config_IntegralZone(0, 0);
+    climber.configClosedLoopPeakOutput(0, 1.0);
+    climber.selectProfileSlot(0, 0);
+

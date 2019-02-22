@@ -122,25 +122,38 @@ public class Robot extends SampleRobot {
    */
   public void motionmagicclimber(){
     TalonSRX upDownRear = new TalonSRX(31);
-    upDownRear.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-    upDownRear.getSensorCollection().setQuadraturePosition(0, 10);
-    upDownRear.configMotionAcceleration(4784);
-    upDownRear.configMotionCruiseVelocity(1196);
-    upDownRear.configPeakOutputForward(1.0);
-    upDownRear.configPeakOutputReverse(-1.0);
-    upDownRear.config_kP(0, 0);
-    upDownRear.config_kI(0, 0);
-    upDownRear.config_kD(0, 0);
-    upDownRear.config_kF(0, 0.427799073);
-    upDownRear.config_IntegralZone(0, 0);
-    upDownRear.configClosedLoopPeakOutput(0, 1.0);
-    upDownRear.selectProfileSlot(0, 0);
-    upDownRear.set(ControlMode.MotionMagic, 8000, DemandType.ArbitraryFeedForward, 1196);
-    Timer.delay(2);
-    System.out.println("Encoder Position at 2 seconds\t" + upDownRear.getSensorCollection().getQuadraturePosition());
-    Timer.delay(2);
-    System.out.println("Encoder Position at 4 seconds\t" + upDownRear.getSensorCollection().getQuadraturePosition());
-    upDownRear.set(ControlMode.PercentOutput, 0);
+    talonConfig(upDownRear);
+    TalonSRX upDownFront = new TalonSRX(21);
+    talonConfig(upDownFront);
+    upDownFront.configMotionAcceleration(4784/2);
+    upDownRear.set(ControlMode.MotionMagic, 12000, DemandType.ArbitraryFeedForward, 1196);
+    long startTime = System.currentTimeMillis();
+    while(System.currentTimeMillis() - startTime < 20000){
+      if(System.currentTimeMillis() % 100 ==0){
+        System.out.println("updownFront\t" + upDownFront.getSensorCollection().getQuadraturePosition());
+      }
+      upDownFront.set(ControlMode.Position, upDownRear.getSensorCollection().getQuadraturePosition(), DemandType.ArbitraryFeedForward, 0);
 
+    }
+    // target 8000 ended on 
+    upDownRear.set(ControlMode.PercentOutput, 0);
+    upDownFront.set(ControlMode.PercentOutput, 0);
+
+   }
+   public void talonConfig(TalonSRX climber){
+    climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    climber.getSensorCollection().setQuadraturePosition(0, 10);
+    climber.configMotionAcceleration(4784);
+    climber.configMotionCruiseVelocity(1196);
+    climber.configPeakOutputForward(1.0);
+    climber.configPeakOutputReverse(-1.0);
+    climber.config_kP(0, 0.1705);
+    climber.config_kI(0, 0);
+    climber.config_kD(0, 1.75);
+    climber.config_kF(0, 0.427799073);
+    climber.config_IntegralZone(0, 0);
+    climber.configClosedLoopPeakOutput(0, 1.0);
+    climber.selectProfileSlot(0, 0);
+    
    }
 }
