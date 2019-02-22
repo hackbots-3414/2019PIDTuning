@@ -53,3 +53,15 @@ upDownRear values:
     climber.configClosedLoopPeakOutput(0, 1.0);
     climber.selectProfileSlot(0, 0);
 
+kf front: 0.3838649156
+
+
+
+
+
+
+
+
+
+
+

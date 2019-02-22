@@ -104,17 +104,17 @@ public class Robot extends SampleRobot {
    */
   @Override
   public void test() {
-    TalonSRX upDownRear = new TalonSRX(31);
-    upDownRear.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-    upDownRear.getSensorCollection().setQuadraturePosition(0, 10);
-    upDownRear.set(ControlMode.PercentOutput, 1);
+    TalonSRX talon = new TalonSRX(21);
+    talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    talon.getSensorCollection().setQuadraturePosition(0, 10);
+    talon.set(ControlMode.PercentOutput, 1);
     long startTime = System.currentTimeMillis(); 
     while(System.currentTimeMillis() - startTime < 1000){
       if(System.currentTimeMillis() % 100 == 0){
-        System.out.println("Encoder ticks\t" +upDownRear.getSensorCollection().getQuadraturePosition());
+        System.out.println("Encoder ticks\t" +talon.getSensorCollection().getQuadraturePosition());
       }
     }
-    upDownRear.set(ControlMode.PercentOutput, 0);
+    talon.set(ControlMode.PercentOutput, 0);
   }
 
   /**
@@ -124,18 +124,22 @@ public class Robot extends SampleRobot {
     TalonSRX upDownRear = new TalonSRX(31);
     talonConfig(upDownRear);
     TalonSRX upDownFront = new TalonSRX(21);
-    talonConfig(upDownFront);
+    front(upDownFront);
     upDownFront.configMotionAcceleration(4784/2);
     upDownRear.set(ControlMode.MotionMagic, 12000, DemandType.ArbitraryFeedForward, 1196);
     long startTime = System.currentTimeMillis();
     while(System.currentTimeMillis() - startTime < 20000){
-      if(System.currentTimeMillis() % 100 ==0){
-        System.out.println("updownFront\t" + upDownFront.getSensorCollection().getQuadraturePosition());
-      }
+      //if(System.currentTimeMillis() % 100 ==0){
+       // System.out.println("updownFront\t" + upDownFront.getSensorCollection().getQuadraturePosition());
+     // }
       upDownFront.set(ControlMode.Position, upDownRear.getSensorCollection().getQuadraturePosition(), DemandType.ArbitraryFeedForward, 0);
 
     }
     // target 8000 ended on 
+   // upDownFront.set(ControlMode.Position, 12000, DemandType.ArbitraryFeedForward, 0);
+   // System.out.println("updownFront\t" + upDownFront.getSensorCollection().getQuadraturePosition());
+   // Timer.delay(20);
+    System.out.println("updownFront\t" + upDownFront.getSensorCollection().getQuadraturePosition());
     upDownRear.set(ControlMode.PercentOutput, 0);
     upDownFront.set(ControlMode.PercentOutput, 0);
 
@@ -147,7 +151,7 @@ public class Robot extends SampleRobot {
     climber.configMotionCruiseVelocity(1196);
     climber.configPeakOutputForward(1.0);
     climber.configPeakOutputReverse(-1.0);
-    climber.config_kP(0, 0.1705);
+    climber.config_kP(0, 0.175);
     climber.config_kI(0, 0);
     climber.config_kD(0, 1.75);
     climber.config_kF(0, 0.427799073);
@@ -155,5 +159,21 @@ public class Robot extends SampleRobot {
     climber.configClosedLoopPeakOutput(0, 1.0);
     climber.selectProfileSlot(0, 0);
     
+   } public void front(TalonSRX climber){
+    climber.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    climber.getSensorCollection().setQuadraturePosition(0, 10);
+    climber.configMotionAcceleration(4784);
+    climber.configMotionCruiseVelocity(1196);
+    climber.configPeakOutputForward(1.0);
+    climber.configPeakOutputReverse(-1.0);
+    climber.config_kP(0, 1);
+    climber.config_kI(0, 0);
+    climber.config_kD(0, 0);
+    climber.config_kF(0, 0);
+    climber.config_IntegralZone(0, 0);
+    climber.configClosedLoopPeakOutput(0, 1.0);
+    climber.selectProfileSlot(0, 0);
+    
    }
+   
 }
